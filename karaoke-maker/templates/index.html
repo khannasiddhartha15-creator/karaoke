@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Karaoke Maker</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main>
+  <h1>Drop a song.<br>Sing it yourself.</h1>
+  <p class="lead">We remove the vocals and give you the backing track.</p>
+
+  <label id="drop" tabindex="0">
+    <input type="file" id="file" accept=".mp3,.wav,.m4a,.flac,.ogg" hidden>
+    <span id="drop-text">Drag an audio file here, or click to choose one</span>
+  </label>
+
+  <fieldset>
+    <legend>Quality</legend>
+    <label><input type="radio" name="method" value="auto" checked> Best available{% if not ai_ready %} (AI not installed, using basic){% endif %}</label>
+    <label><input type="radio" name="method" value="basic"> Fast (basic vocal removal)</label>
+  </fieldset>
+
+  <button id="go" disabled>Make karaoke track</button>
+  <p id="status" role="status"></p>
+
+  <section id="result" hidden>
+    <audio id="player" controls></audio>
+    <a id="download" class="btn" download>Download MP3</a>
+  </section>
+</main>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
