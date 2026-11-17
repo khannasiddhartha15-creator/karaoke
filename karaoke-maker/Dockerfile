@@ -4,4 +4,5 @@ WORKDIR /app
 COPY requirements-web.txt .
 RUN pip install --no-cache-dir -r requirements-web.txt
 COPY . .
+RUN mkdir -p uploads outputs
 CMD gunicorn app:app --bind 0.0.0.0:${PORT:-5000} --timeout 300
